@@ -1,0 +1,29 @@
+header {
+  //width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 100px;
+  background-color: indigo;
+}
+
+.__container {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+
+  h2 {
+    margin: 10px auto;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+  }
+
+  button {
+    margin: 10px 30px;
+  }
+}
