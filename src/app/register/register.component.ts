@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent {
   registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private snackbar: MatSnackBar) {
+              private snackbar: MatSnackBar,
+              private authStatus: AuthServiceService) {
     this.registrationForm = this.fb.group({
       login: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -41,6 +43,7 @@ export class RegisterComponent {
       localStorage.setItem('email', `${fb.email}`);
       localStorage.setItem('password', `${fb.password}`);
       this.openSnackBar('Вы успешно зарегистрированы!');
+      this.authStatus.setStatus(true);
     }
   }
 }

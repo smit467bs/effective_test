@@ -12,7 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RegisterComponent } from './register/register.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -46,7 +46,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     HttpClientModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
