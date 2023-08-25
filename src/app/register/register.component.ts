@@ -48,7 +48,6 @@ export class RegisterComponent {
       localStorage.setItem('email', `${fb.email}`);
       localStorage.setItem('password', `${fb.password}`);
       this.openSnackBar('Вы успешно зарегистрированы!');
-      this.authStatus.setStatus(true);
     }
   }
 }

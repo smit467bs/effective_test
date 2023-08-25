@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent {
   password = '';
 
   constructor(private snackbar: MatSnackBar,
-              private router: Router) {
+              private router: Router,
+              private isAuth: AuthServiceService) {
   }
 
   openSnackBar(message: string, duration: number = 2000) {
@@ -32,7 +34,7 @@ export class LoginComponent {
 
     if (localPassword === this.login &&
       localLogin === this.password) {
-      localStorage.setItem('isAuth', 'yes');
+      this.isAuth.setStatus(true);
       this.openSnackBar('Вы успешно авторизировались');
     }
   }

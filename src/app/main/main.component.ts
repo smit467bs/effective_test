@@ -3,6 +3,7 @@ import { PostsService } from '../services/posts.service';
 import { IPost } from '../types';
 import { MatDialog } from '@angular/material/dialog';
 import { PostmodalComponent } from '../postmodal/postmodal.component';
+import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-main',
@@ -14,21 +15,20 @@ export class MainComponent implements OnInit {
   loading = true;
 
   constructor(private services: PostsService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private isAuth: AuthServiceService) {
   }
 
   openPostModal(post: IPost) {
-    const dialogRef = this.dialog.open(PostmodalComponent, {
-      width: '400px',
-      data: post
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Modal closed: ', result);
-    });
-  }
-
-  getInfo() {
-    console.log(this.posts);
+    if (this.isAuth.getStatus()) {
+      const dialogRef = this.dialog.open(PostmodalComponent, {
+        width: '400px',
+        data: post
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('Modal closed: ', result);
+      });
+    }
   }
 
   ngOnInit(): void {

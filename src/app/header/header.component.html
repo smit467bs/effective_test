@@ -2,8 +2,13 @@
   <div class='__container'>
     <h2>Effective mobile</h2>
     <nav>
-      <a mat-raised-button routerLink='login' routerLinkActive=''>Login</a>
-      <a mat-raised-button routerLink='register'>Register</a>
+      <a mat-raised-button routerLink=''>Main</a>
+      <a mat-raised-button routerLink='login' routerLinkActive='login' *ngIf='!isAuth.getStatus()'>Login</a>
+      <a mat-raised-button routerLink='register' *ngIf='!isAuth.getStatus()'>Register</a>
+      <a mat-raised-button
+         *ngIf='isAuth.getStatus()'
+         (click)='isAuth.setStatus(false)'
+      >Logout</a>
     </nav>
   </div>
 </header>
