@@ -14,13 +14,15 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
