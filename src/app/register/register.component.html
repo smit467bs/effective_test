@@ -2,34 +2,50 @@
   <div class='register__container'>
     <div class='inner__container'>
       <h2>Register form</h2>
-      <mat-form-field>
-        <mat-label>Username</mat-label>
-        <input type='text' matInput [formControl]='login' />
-        <mat-error *ngIf='login.invalid'>Login invalid</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Enter your email</mat-label>
-        <input type='email' matInput [formControl]='email' />
-        <mat-error *ngIf='email.invalid'>email is invalid</mat-error>
-      </mat-form-field>
-      <p *ngIf='password.invalid'>Password must have at least 8 characters, 1 uppercase letter, 1 lowercase
-        letter, and 1 number.</p>
-      <mat-form-field>
-        <mat-label>Enter your password</mat-label>
-        <input matInput
-               [formControl]='password'
-               [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)='hide = !hide' [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]='hide'>
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-error *ngIf='password.invalid'>
+      <form
+        (ngSubmit)='onSubmit($event)'
+        [formGroup]='registrationForm'>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input type='text' matInput formControlName='login' />
+          <mat-error *ngIf="registrationForm.get('login')?.invalid">Login invalid</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Enter your email</mat-label>
+          <input type='email' matInput formControlName='email' />
+          <mat-error
+            *ngIf="registrationForm.get('email')?.invalid">
+            email is invalid
           </mat-error>
-        </button>
-      </mat-form-field>
-      <div class='btn__container'>
-        <button mat-raised-button color='primary'>Back to main</button>
-        <button mat-raised-button color='accent'>Sign up</button>
-      </div>
+        </mat-form-field>
+        <p *ngIf="registrationForm.get('password')?.invalid">
+          Password must have at
+          least 8 characters, 1 uppercase
+          letter, 1 lowercase
+          letter, and 1 number.</p>
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input matInput
+                 formControlName='password'
+                 [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)='hide = !hide' [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]='hide'>
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error
+              *ngIf="registrationForm.get('password')?.invalid">
+            </mat-error>
+          </button>
+        </mat-form-field>
+        <div class='btn__container'>
+          <button
+            mat-raised-button color='primary'
+            routerLink=''
+          >Back to main
+          </button>
+          <button mat-raised-button color='accent' type='submit'>Sign up</button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>

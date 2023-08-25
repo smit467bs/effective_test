@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -8,16 +9,38 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-    Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/),
-    Validators.pattern(/^[^\s].*[^\s]$/)
-  ]);
-  login = new FormControl('', [Validators.required]);
+  registrationForm: FormGroup;
 
+  constructor(private fb: FormBuilder,
+              private snackbar: MatSnackBar) {
+    this.registrationForm = this.fb.group({
+      login: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/),
+        Validators.pattern(/^[^\s].*[^\s]$/)
+      ]
+      ]
+    });
+  }
 
-  constructor() {
+  openSnackBar(message: string, duration: number = 2000) {
+    this.snackbar.open(message, 'Закрыть', {
+      duration: duration,
+      verticalPosition: 'top'
+    });
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    if (this.registrationForm.valid) {
+      const fb = this.registrationForm.value;
+      localStorage.setItem('username', `${fb.login}`);
+      localStorage.setItem('email', `${fb.email}`);
+      localStorage.setItem('password', `${fb.password}`);
+      this.openSnackBar('Вы успешно зарегистрированы!');
+    }
   }
 }
