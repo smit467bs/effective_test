@@ -12,6 +12,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import { RegisterComponent } from './register/register.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatListModule,
     MatMenuModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
