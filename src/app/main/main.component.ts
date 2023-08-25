@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { IPost } from '../types';
+import { MatDialog } from '@angular/material/dialog';
+import { PostmodalComponent } from '../postmodal/postmodal.component';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +13,18 @@ export class MainComponent implements OnInit {
   posts: IPost[] = [];
   loading = true;
 
-  constructor(private services: PostsService) {
+  constructor(private services: PostsService,
+              private dialog: MatDialog) {
+  }
+
+  openPostModal(post: IPost) {
+    const dialogRef = this.dialog.open(PostmodalComponent, {
+      width: '400px',
+      data: post
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Modal closed: ', result);
+    });
   }
 
   getInfo() {

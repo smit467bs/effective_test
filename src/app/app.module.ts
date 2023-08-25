@@ -17,7 +17,9 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { PostmodalComponent } from './postmodal/postmodal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     RegisterComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    PostmodalComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatGridListModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
