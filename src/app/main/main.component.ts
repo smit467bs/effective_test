@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
 
   constructor(private services: PostsService,
               private dialog: MatDialog,
-              private isAuth: AuthServiceService) {
+              public isAuth: AuthServiceService) {
   }
 
   openPostModal(post: IPost) {

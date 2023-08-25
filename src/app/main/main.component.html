@@ -1,14 +1,19 @@
 <div class='main___comp'>
-  <p *ngIf='loading'>Loading.....</p>
-  <mat-grid-list cols='2' rowHeight='2:1'>
-    <mat-grid-tile
-      *ngFor='let post of posts; let i = index'
-      (click)='openPostModal(post)'
-    >
-      <div class='container__card'>
-        <h2>{{post.title}}</h2>
-        <p>{{post.body}}</p>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <h1
+    *ngIf='!isAuth.getStatus()'
+    style='color: red'>Это страница постов, доступна только авторизированным пользователям</h1>
+  <div *ngIf='isAuth.getStatus()'>
+    <p *ngIf='loading'>Loading.....</p>
+    <mat-grid-list cols='2' rowHeight='2:1'>
+      <mat-grid-tile
+        *ngFor='let post of posts; let i = index'
+        (click)='openPostModal(post)'
+      >
+        <div class='container__card'>
+          <h2>{{post.title}}</h2>
+          <p>{{post.body}}</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 </div>
