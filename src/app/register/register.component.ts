@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthServiceService } from '../services/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder,
               private snackbar: MatSnackBar,
-              private authStatus: AuthServiceService) {
+              private authStatus: AuthServiceService,
+              private router: Router) {
     this.registrationForm = this.fb.group({
       login: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,6 +35,9 @@ export class RegisterComponent {
       duration: duration,
       verticalPosition: 'top'
     });
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 2000);
   }
 
   onSubmit(event: Event) {
