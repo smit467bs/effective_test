@@ -5,7 +5,21 @@
 }
 
 .container__card {
+  width: 70%;
+  height: 70%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  border-style: double;
+  border-radius: 40px;
+  border-color: indigo;
+  //justify-content: space-between;
+  h2 {
+    margin: 10% auto;
+  }
+
+  p {
+    margin: 10px 50px;
+    font-size: large;
+  }
 }

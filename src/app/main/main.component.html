@@ -5,17 +5,8 @@
       *ngFor='let post of posts; let i = index'
     >
       <div class='container__card'>
-        <mat-card>
-          <mat-card-title-group>
-            <mat-card-title
-            >
-              {{ post.title }}
-            </mat-card-title>
-          </mat-card-title-group>
-          <mat-card-content>
-            {{ post.body }}
-          </mat-card-content>
-        </mat-card>
+        <h2>{{post.title}}</h2>
+        <p>{{post.body}}</p>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
